@@ -277,7 +277,19 @@ const Home: React.FC<HomeProps> = ({ isSidebarOpen, onCloseSidebar }) => {
             {/* Header do Status */}
             <div className="bg-gray-900/90 px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-700 flex justify-between items-center">
               <h3 className="text-white font-semibold flex items-center gap-2 text-sm sm:text-base">
-                <span className="w-2 h-2 sm:w-3 sm:h-3 bg-green-500 rounded-full animate-pulse flex-shrink-0"></span>
+                {/* Efeito de ondas verdes da voz */}
+                <div className="flex items-center justify-center gap-0.5 h-4 sm:h-5 flex-shrink-0">
+                  {audioBarHeights.slice(0, 3).map((height, i) => (
+                    <div
+                      key={i}
+                      className={`w-1 sm:w-1.5 bg-green-500 rounded-full transition-all duration-100`}
+                      style={{
+                        height: `${Math.max(height * 0.6, 6)}px`,
+                        opacity: conversation.isSpeaking ? 1 : 0.7
+                      }}
+                    ></div>
+                  ))}
+                </div>
                 <span className="truncate">Conversa ativa com {agentName || 'Agente'}</span>
               </h3>
               <button 
@@ -291,25 +303,11 @@ const Home: React.FC<HomeProps> = ({ isSidebarOpen, onCloseSidebar }) => {
             
             {/* Visualizador de Voz */}
             <div className="p-4 sm:p-6 flex flex-col items-center">
-              <div className="text-white/70 text-center mb-4 sm:mb-6">
+              <div className="text-white/70 text-center">
                 <p className="text-base sm:text-lg mb-2 font-medium">🎤 Conversa por voz ativa</p>
                 <p className="text-xs sm:text-sm text-gray-400 max-w-md mx-auto leading-relaxed">
                   Fale naturalmente com o agente. Sua voz está sendo processada em tempo real.
                 </p>
-              </div>
-              
-              {/* Indicador visual de áudio */}
-              <div className="flex items-end justify-center gap-1 h-6 sm:h-8">
-                {audioBarHeights.map((height, i) => (
-                  <div
-                    key={i}
-                    className={`w-1 sm:w-1.5 bg-green-500 rounded-full transition-all duration-100`}
-                    style={{
-                      height: `${Math.max(height * 0.8, 4)}px`,
-                      opacity: conversation.isSpeaking ? 1 : 0.6
-                    }}
-                  ></div>
-                ))}
               </div>
             </div>
           </div>

@@ -92,7 +92,7 @@ body {
     appearance: none;
     width: 20px;
     height: 20px;
-    background: #10b981;
+    background: #f97316;
     border-radius: 50%;
     cursor: pointer;
     border: 2px solid #ffffff;
@@ -102,7 +102,7 @@ body {
   .slider::-moz-range-thumb {
     width: 20px;
     height: 20px;
-    background: #10b981;
+    background: #f97316;
     border-radius: 50%;
     cursor: pointer;
     border: 2px solid #ffffff;
@@ -132,7 +132,7 @@ body {
     appearance: none;
     width: 16px;
     height: 16px;
-    background: #10b981;
+    background: #f97316;
     border-radius: 50%;
     cursor: pointer;
     border: 2px solid #ffffff;
@@ -142,7 +142,7 @@ body {
   .slider::-moz-range-thumb {
     width: 16px;
     height: 16px;
-    background: #10b981;
+    background: #f97316;
     border-radius: 50%;
     cursor: pointer;
     border: 2px solid #ffffff;
@@ -162,10 +162,12 @@ body {
   .slider::-webkit-slider-thumb {
     width: 24px;
     height: 24px;
+    background: #f97316;
   }
   
   .slider::-moz-range-thumb {
     width: 24px;
     height: 24px;
+    background: #f97316;
   }
 }
