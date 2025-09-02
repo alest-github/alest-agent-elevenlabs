@@ -1,0 +1,140 @@
+/* Sidebar Component Styles */
+
+.sidebar-overlay {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.sidebar-content {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(249, 115, 22, 0.3) transparent;
+}
+
+.sidebar-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-content::-webkit-scrollbar-thumb {
+  background: rgba(249, 115, 22, 0.3);
+  border-radius: 3px;
+}
+
+.sidebar-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(249, 115, 22, 0.5);
+}
+
+/* Animação de entrada do sidebar */
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+/* Animação de entrada do overlay */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Classes de animação */
+.sidebar-enter {
+  animation: slideInLeft 0.3s ease-out;
+}
+
+.sidebar-exit {
+  animation: slideOutLeft 0.3s ease-in;
+}
+
+.overlay-enter {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.overlay-exit {
+  animation: fadeOut 0.3s ease-in;
+}
+
+/* Responsividade */
+@media (max-width: 640px) {
+  .sidebar {
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  .sidebar-button {
+    top: 1rem;
+    left: 1rem;
+  }
+}
+
+/* Estados de hover e focus */
+.sidebar-tab:hover {
+  background-color: rgba(249, 115, 22, 0.1);
+  transition: background-color 0.2s ease;
+}
+
+.sidebar-tab:focus {
+  outline: 2px solid rgba(249, 115, 22, 0.5);
+  outline-offset: 2px;
+}
+
+/* Transições suaves */
+.sidebar-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Efeitos de sombra */
+.sidebar-shadow {
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(249, 115, 22, 0.1);
+}
+
+/* Gradientes personalizados */
+.sidebar-gradient {
+  background: linear-gradient(
+    135deg,
+    rgba(17, 24, 39, 0.95) 0%,
+    rgba(31, 41, 55, 0.95) 100%
+  );
+}
+
+/* Bordas com brilho */
+.sidebar-border-glow {
+  border: 1px solid rgba(249, 115, 22, 0.3);
+  box-shadow: 
+    0 0 20px rgba(249, 115, 22, 0.1),
+    inset 0 0 20px rgba(249, 115, 22, 0.05);
+}

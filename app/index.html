@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- CSP alinhada ao OWASP: restringe fontes e permite Tailwind CDN -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; img-src 'self' data:; font-src 'self' https: data:; object-src 'none'; script-src 'self' https://cdn.tailwindcss.com 'sha256-IstG4IHV1GqjkAa0bfZVYh8m6mpuJIZN9QyQtVuLo1U='; script-src-attr 'none'; style-src 'self' https: 'unsafe-inline'; connect-src 'self' http://localhost:3001 http://localhost:5174 ws://localhost:5174 https://elevenlabs-monday-back.loca.lt https://api.elevenlabs.io wss://api.elevenlabs.io https://livekit.rtc.elevenlabs.io wss://livekit.rtc.elevenlabs.io; upgrade-insecure-requests">
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ElevenLabs + Monday.com Integration</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'alest-blue': '#1e40af',
+              'alest-dark': '#1e293b',
+              'alest-light': '#f8fafc',
+            }
+          }
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
