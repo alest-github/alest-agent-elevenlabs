@@ -9,8 +9,7 @@ interface HomeProps {
 
 const Home: React.FC<HomeProps> = ({ isSidebarOpen, onCloseSidebar }) => {
   const [agentName, setAgentName] = useState('')
-  const [editingName, setEditingName] = useState(false)
-  const [savingName, setSavingName] = useState(false)
+
   const [volume, setVolume] = useState(1)
   const [micMuted, setMicMuted] = useState(false)
   const [micPermission, setMicPermission] = useState<'granted' | 'denied' | 'prompt'>('prompt')
@@ -98,16 +97,7 @@ const Home: React.FC<HomeProps> = ({ isSidebarOpen, onCloseSidebar }) => {
     loadAgent()
   }, [])
 
-  const saveAgentName = async (name: string) => {
-    try {
-      setSavingName(true)
-      localStorage.setItem('agent-name', name)
-    } catch (error) {
-      console.error('Erro ao salvar nome do agente:', error)
-    } finally {
-      setSavingName(false)
-    }
-  }
+
 
   const requestMic = async () => {
     try {
