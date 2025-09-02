@@ -178,10 +178,10 @@ const Home: React.FC<HomeProps> = ({ isSidebarOpen, onCloseSidebar }) => {
       <Sidebar isOpen={isSidebarOpen} onClose={onCloseSidebar} />
 
       {/* Conteúdo principal minimalista com orbe e chat */}
-      <div className="h-[calc(100vh-120px)] flex flex-col items-center justify-center px-4 py-4">
+      <div className="min-h-[calc(100vh-120px)] flex flex-col items-center justify-center px-4 py-4 sm:px-6 lg:px-8">
         {/* Orbe central */}
-        <div className="relative mb-6 flex flex-col items-center">
-          <div className={`w-64 h-64 md:w-80 md:h-80 rounded-full opacity-90 transition-all duration-150 anexa-voice-visual ${
+        <div className="relative mb-4 sm:mb-6 lg:mb-8 flex flex-col items-center w-full max-w-md">
+          <div className={`w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-80 lg:h-80 xl:w-96 xl:h-96 rounded-full opacity-90 transition-all duration-150 anexa-voice-visual ${
             isConversationActive
               ? conversation.isSpeaking
                 ? 'shadow-[0_0_140px_rgba(34,197,94,0.6)] bg-gradient-to-tr from-green-400 via-emerald-300 to-teal-400 scale-105'
@@ -206,9 +206,9 @@ const Home: React.FC<HomeProps> = ({ isSidebarOpen, onCloseSidebar }) => {
           }`}></div>
 
           {/* Botões de ação */}
-          <div className="absolute -bottom-6 md:bottom-8 md:static translate-y-8 md:translate-y-0 flex gap-3" style={{ marginTop: '20px' }}>
+          <div className="mt-4 sm:mt-6 lg:mt-8 flex flex-col sm:flex-row gap-3 w-full justify-center">
             <button
-              className={`px-5 py-2 rounded-full shadow-lg transition-all duration-200 flex items-center gap-2 ${
+              className={`px-4 py-2 sm:px-5 sm:py-2 rounded-full shadow-lg transition-all duration-200 flex items-center justify-center gap-2 text-sm sm:text-base min-w-[160px] sm:min-w-[180px] ${
                 isConversationActive
                   ? 'bg-red-500/90 text-white border border-red-400/20 hover:bg-red-600 hover:scale-105'
                   : 'bg-gradient-to-r from-orange-500 to-orange-600 text-white border-0 hover:from-orange-600 hover:to-orange-700 hover:scale-105 shadow-[0_4px_12px_rgba(249,115,22,0.3)]'
@@ -219,10 +219,10 @@ const Home: React.FC<HomeProps> = ({ isSidebarOpen, onCloseSidebar }) => {
               }
               onClick={isConversationActive ? handleEndConversation : handleStartConversation}
             >
-              <span className="inline-block w-5 h-5 rounded-full bg-white text-black flex items-center justify-center">
+              <span className="inline-block w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-white text-black flex items-center justify-center text-xs sm:text-sm">
                 {isConversationActive ? '🔴' : '▶'}
               </span>
-              <span>
+              <span className="font-medium">
                 {isConversationActive ? 'Encerrar conversa' : 'Iniciar conversa'}
               </span>
             </button>
@@ -230,27 +230,27 @@ const Home: React.FC<HomeProps> = ({ isSidebarOpen, onCloseSidebar }) => {
 
           {/* Controles de Áudio (quando conectado) */}
           {isConversationActive && (
-            <div className="mt-3 flex flex-col gap-2">
+            <div className="mt-3 sm:mt-4 flex flex-col gap-2 sm:gap-3 w-full max-w-sm">
               {/* Controle de Mute do Microfone */}
-              <div className="flex items-center gap-3 bg-gray-900/70 border border-gray-700/60 rounded-2xl px-4 py-2">
-                <span className="text-white/70 text-sm">Microfone:</span>
+              <div className="flex items-center justify-between gap-3 bg-gray-900/70 border border-gray-700/60 rounded-2xl px-3 sm:px-4 py-2 sm:py-3">
+                <span className="text-white/70 text-xs sm:text-sm font-medium">Microfone:</span>
                 <button
                   onClick={() => setMicMuted(!micMuted)}
-                  className={`flex items-center gap-2 px-3 py-1 rounded-lg transition-colors ${
+                  className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 rounded-lg transition-colors min-w-[80px] sm:min-w-[90px] justify-center ${
                     micMuted 
                       ? 'bg-red-500/20 text-red-400 border border-red-500/30' 
                       : 'bg-green-500/20 text-green-400 border border-green-500/30'
                   }`}
                   title={micMuted ? 'Desmutar microfone' : 'Mutar microfone'}
                 >
-                  <span>{micMuted ? '🔇' : '🎤'}</span>
-                  <span className="text-sm">{micMuted ? 'Mutado' : 'Ativo'}</span>
+                  <span className="text-sm sm:text-base">{micMuted ? '🔇' : '🎤'}</span>
+                  <span className="text-xs sm:text-sm font-medium">{micMuted ? 'Mutado' : 'Ativo'}</span>
                 </button>
               </div>
               
               {/* Controle de Volume */}
-              <div className="flex items-center gap-3 bg-gray-900/70 border border-gray-700/60 rounded-2xl px-4 py-2">
-                <span className="text-white/70 text-sm">🔊</span>
+              <div className="flex items-center gap-2 sm:gap-3 bg-gray-900/70 border border-gray-700/60 rounded-2xl px-3 sm:px-4 py-2 sm:py-3">
+                <span className="text-white/70 text-sm sm:text-base flex-shrink-0">🔊</span>
                 <input
                   type="range"
                   min="0"
@@ -261,9 +261,9 @@ const Home: React.FC<HomeProps> = ({ isSidebarOpen, onCloseSidebar }) => {
                     const newVolume = parseFloat(e.target.value)
                     setVolume(newVolume)
                   }}
-                  className="w-24 h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer slider"
+                  className="flex-1 h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer slider min-w-[80px]"
                 />
-                <span className="text-white/70 text-sm">{Math.round(volume * 100)}%</span>
+                <span className="text-white/70 text-xs sm:text-sm font-medium min-w-[35px] text-right">{Math.round(volume * 100)}%</span>
               </div>
             </div>
           )}
@@ -273,38 +273,39 @@ const Home: React.FC<HomeProps> = ({ isSidebarOpen, onCloseSidebar }) => {
 
         {/* Status da Conversa por Voz */}
         {conversation.status === 'connected' && (
-          <div className="w-full max-w-4xl bg-gray-800/90 rounded-2xl border border-gray-700 overflow-hidden">
+          <div className="w-full max-w-4xl mx-auto bg-gray-800/90 rounded-2xl border border-gray-700 overflow-hidden">
             {/* Header do Status */}
-            <div className="bg-gray-900/90 px-6 py-4 border-b border-gray-700 flex justify-between items-center">
-              <h3 className="text-white font-semibold flex items-center gap-2">
-                <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
-                Conversa ativa com {agentName || 'Agente'}
+            <div className="bg-gray-900/90 px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-700 flex justify-between items-center">
+              <h3 className="text-white font-semibold flex items-center gap-2 text-sm sm:text-base">
+                <span className="w-2 h-2 sm:w-3 sm:h-3 bg-green-500 rounded-full animate-pulse flex-shrink-0"></span>
+                <span className="truncate">Conversa ativa com {agentName || 'Agente'}</span>
               </h3>
               <button 
                 onClick={handleEndConversation}
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-gray-400 hover:text-white transition-colors p-1 flex-shrink-0"
+                title="Encerrar conversa"
               >
-                ✕
+                <span className="text-lg sm:text-xl">✕</span>
               </button>
             </div>
             
             {/* Visualizador de Voz */}
-            <div className="p-4 flex flex-col items-center">
-              <div className="text-white/70 text-center mb-4">
-                <p className="text-lg mb-2">🎤 Conversa por voz ativa</p>
-                <p className="text-sm text-gray-400">
+            <div className="p-4 sm:p-6 flex flex-col items-center">
+              <div className="text-white/70 text-center mb-4 sm:mb-6">
+                <p className="text-base sm:text-lg mb-2 font-medium">🎤 Conversa por voz ativa</p>
+                <p className="text-xs sm:text-sm text-gray-400 max-w-md mx-auto leading-relaxed">
                   Fale naturalmente com o agente. Sua voz está sendo processada em tempo real.
                 </p>
               </div>
               
               {/* Indicador visual de áudio */}
-              <div className="flex items-end justify-center gap-1 h-8">
+              <div className="flex items-end justify-center gap-1 h-6 sm:h-8">
                 {audioBarHeights.map((height, i) => (
                   <div
                     key={i}
-                    className={`w-1 bg-green-500 rounded-full transition-all duration-100`}
+                    className={`w-1 sm:w-1.5 bg-green-500 rounded-full transition-all duration-100`}
                     style={{
-                      height: `${height}px`,
+                      height: `${Math.max(height * 0.8, 4)}px`,
                       opacity: conversation.isSpeaking ? 1 : 0.6
                     }}
                   ></div>
@@ -316,11 +317,11 @@ const Home: React.FC<HomeProps> = ({ isSidebarOpen, onCloseSidebar }) => {
 
         {/* Instruções quando não conectado */}
         {conversation.status === 'disconnected' && (
-          <div className="w-full max-w-3xl">
-            <div className="bg-gray-800/60 border border-gray-700 rounded-2xl p-4 text-center">
-              <div className="text-white/70 mb-4">
-                <p className="text-lg mb-2">🎤 Agente de Voz</p>
-                <p className="text-sm text-gray-400">
+          <div className="w-full max-w-3xl mx-auto px-4">
+            <div className="bg-gray-800/60 border border-gray-700 rounded-2xl p-4 sm:p-6 text-center">
+              <div className="text-white/70">
+                <p className="text-base sm:text-lg mb-3 sm:mb-4 font-medium">🎤 Agente de Voz</p>
+                <p className="text-xs sm:text-sm text-gray-400 max-w-md mx-auto leading-relaxed">
                   Clique em "Iniciar conversa" para começar a falar com o agente por voz.
                   Certifique-se de que seu microfone esteja habilitado.
                 </p>
