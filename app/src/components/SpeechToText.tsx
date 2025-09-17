@@ -307,7 +307,7 @@ const SpeechToText: React.FC<SpeechToTextProps> = ({ className = '' }) => {
         
         // Se não é erro 429 ou é a última tentativa, falha imediatamente
         if (!error || typeof error !== 'object' || !('message' in error) || 
-            !(error as any).message.includes('429') || attempt === maxRetries) {
+            !(error as Error).message.includes('429') || attempt === maxRetries) {
           throw error
         }
         
@@ -345,20 +345,7 @@ const SpeechToText: React.FC<SpeechToTextProps> = ({ className = '' }) => {
         'cmn': 'zh'
       }
       
-      const languageNames: { [key: string]: string } = {
-        'por': 'Português',
-        'eng': 'English',
-        'spa': 'Español',
-        'fra': 'Français',
-        'deu': 'Deutsch',
-        'ita': 'Italiano',
-        'jpn': '日本語',
-        'kor': '한국어',
-        'cmn': '中文'
-      }
-      
       const targetCode = languageMap[targetLang] || 'en'
-      const targetLanguageName = languageNames[targetLang] || targetLang
       
       // Dividir texto em chunks menores para reduzir carga na API
       const maxChunkSize = 300 // Reduzido para diminuir carga por requisição
