@@ -1,13 +1,7 @@
-import React, { useEffect, useState, useRef } from 'react'
 import { useConversation } from '@elevenlabs/react'
-import Sidebar from './Sidebar/Sidebar'
+import React, { useEffect, useState, useRef } from 'react'
 
-interface HomeProps {
-  isSidebarOpen: boolean;
-  onCloseSidebar: () => void;
-}
-
-const Home: React.FC<HomeProps> = ({ isSidebarOpen, onCloseSidebar }) => {
+const Home: React.FC = () => {
   const [agentName, setAgentName] = useState('')
 
   const [volume, setVolume] = useState(1)
@@ -174,9 +168,6 @@ const Home: React.FC<HomeProps> = ({ isSidebarOpen, onCloseSidebar }) => {
 
   return (
     <>
-      {/* Sidebar de Configuração (reuso) */}
-      <Sidebar isOpen={isSidebarOpen} onClose={onCloseSidebar} />
-
       {/* Conteúdo principal minimalista com orbe e chat */}
       <div className="min-h-[calc(100vh-120px)] flex flex-col items-center justify-center px-4 py-4 sm:px-6 lg:px-8">
         {/* Orbe central */}
